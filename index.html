@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="An independent community hub for Delightex EDU creators: projects, tutorials, tools, and community resources.">
+  <title>DelightHub | Create. Explore. Share.</title>
+  <style>
+    :root {
+      --bg: #0b1020; --panel: #121a2e; --panel2: #18233b;
+      --text: #f4f7ff; --muted: #a9b6d1; --line: #293653;
+      --purple: #8b5cf6; --cyan: #5eead4; --pink: #f472b6;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: radial-gradient(ellipse at top right, #20234d 0, var(--bg) 45%); color: var(--text); font: 16px/1.6 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 36px)); margin: auto; }
+    header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px); background: #0b1020dd; border-bottom: 1px solid #29365399; }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:20px; min-height:72px; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:850; letter-spacing:.3px; text-decoration:none; }
+    .logo { display:grid; place-items:center; width:38px; height:38px; border-radius:12px; background:linear-gradient(135deg,var(--purple),#4f46e5); box-shadow:0 8px 30px #8b5cf633; }
+    .logo span { font-size:20px; }
+    nav { display:flex; gap:22px; flex-wrap:wrap; }
+    nav a { color:var(--muted); font-size:14px; text-decoration:none; }
+    nav a:hover, nav a:focus { color:var(--text); }
+    .hero { padding:82px 0 58px; display:grid; grid-template-columns:1.15fr .85fr; gap:42px; align-items:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:8px; border:1px solid #8b5cf655; color:#d8ccff; background:#8b5cf614; border-radius:999px; padding:6px 12px; font-size:12px; font-weight:750; letter-spacing:.7px; text-transform:uppercase; }
+    h1 { font-size:clamp(42px, 6vw, 68px); line-height:1.04; letter-spacing:-2.6px; margin:20px 0; }
+    .gradient { background:linear-gradient(90deg,#c4b5fd,#5eead4); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .lead { max-width:620px; color:var(--muted); font-size:18px; }
+    .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:28px; }
+    .btn { display:inline-flex; justify-content:center; align-items:center; gap:8px; border:1px solid var(--line); padding:11px 16px; border-radius:12px; font-weight:750; text-decoration:none; cursor:pointer; background:var(--panel); color:var(--text); }
+    .btn.primary { background:linear-gradient(135deg,var(--purple),#6366f1); border-color:transparent; }
+    .btn:hover { transform:translateY(-1px); filter:brightness(1.08); }
+    .hero-art { min-height:310px; border:1px solid #8b5cf644; border-radius:26px; background:linear-gradient(145deg,#1e2149,#10182c 65%); padding:24px; position:relative; overflow:hidden; box-shadow:0 25px 90px #0004; }
+    .hero-art:before,.hero-art:after { content:""; position:absolute; border-radius:50%; filter:blur(2px); }
+    .hero-art:before { width:230px;height:230px;right:-50px;top:-50px;background:#8b5cf633; }
+    .hero-art:after { width:180px;height:180px;left:-50px;bottom:-70px;background:#5eead422; }
+    .orbit { position:absolute; inset:40px; border:1px solid #a5b4fc33; border-radius:50%; transform:rotate(-25deg) scaleY(.62); }
+    .art-card { position:relative; z-index:1; border:1px solid #ffffff22; border-radius:18px; background:#0b1020cc; padding:18px; margin:12px 0; box-shadow:0 14px 30px #0003; }
+    .art-card strong { display:block; font-size:17px; }
+    .art-card small { color:var(--muted); }
+    .chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:13px; }
+    .chip { font-size:11px; border:1px solid #ffffff1c; color:#dbeafe; padding:4px 8px; border-radius:999px; background:#ffffff08; }
+    section { padding:42px 0; }
+    .section-head { display:flex; justify-content:space-between; gap:20px; align-items:end; margin-bottom:20px; }
+    h2 { font-size:clamp(27px,4vw,36px); line-height:1.15; letter-spacing:-.8px; margin:0 0 8px; }
+    .sub { color:var(--muted); margin:0; max-width:700px; }
+    .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { border:1px solid var(--line); background:linear-gradient(160deg,#151f36,#101729); border-radius:18px; padding:20px; min-width:0; }
+    .card:hover { border-color:#8b5cf677; }
+    .iconbox { display:grid; place-items:center; width:44px;height:44px;border-radius:13px;background:#8b5cf622;color:#d7c7ff;font-size:21px;margin-bottom:14px; }
+    .card h3 { margin:0 0 7px; font-size:18px; }
+    .card p { margin:0; color:var(--muted); font-size:14px; }
+    .card .meta { display:flex; gap:7px; flex-wrap:wrap; margin-top:15px; }
+    .searchrow { display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 20px; }
+    input, select { background:#101729; color:var(--text); border:1px solid var(--line); border-radius:11px; padding:11px 13px; font:inherit; }
+    input { flex:1; min-width:200px; }
+    .tool-link { color:#c4b5fd; font-size:13px; display:inline-block; margin-top:14px; text-decoration:none; }
+    .tool-link:hover { text-decoration:underline; }
+    .notice { border:1px solid #5eead433; background:#5eead40b; padding:16px 18px; border-radius:14px; color:#c8f9f0; font-size:14px; }
+    .callout { display:flex; justify-content:space-between; gap:20px; align-items:center; padding:26px; border-radius:20px; border:1px solid #8b5cf655; background:linear-gradient(110deg,#33245b66,#102b3a66); }
+    footer { border-top:1px solid var(--line); margin-top:45px; padding:28px 0 38px; color:var(--muted); font-size:13px; }
+    footer .foot { display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap; }
+    .empty { display:none; color:var(--muted); padding:18px 0; }
+    @media(max-width:800px) { .hero { grid-template-columns:1fr; padding-top:55px; } .hero-art { min-height:250px; } .grid { grid-template-columns:repeat(2,1fr); } nav { gap:12px; } }
+    @media(max-width:560px) { .nav { align-items:flex-start; flex-direction:column; padding:14px 0; gap:10px; } nav { gap:14px; } .grid { grid-template-columns:1fr; } .section-head,.callout { align-items:flex-start; flex-direction:column; } h1 { letter-spacing:-1.5px; } }
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="DelightHub home"><span class="logo"><span>✦</span></span><span>DelightHub</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#projects">Projects</a><a href="#tutorials">Tutorials</a><a href="#tools">Tools</a><a href="#community">Community</a>
+    </nav>
+  </div>
+</header>
+<main id="home">
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">✦ Independent creator hub</div>
+      <h1>Create. Explore.<br><span class="gradient">Share something cool.</span></h1>
+      <p class="lead">A community-made home for Delightex EDU creators. Discover projects, learn new techniques, and find useful tools for your next build.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">Explore projects ↗</a>
+        <a class="btn" href="#tutorials">Browse tutorials</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-label="Featured content preview">
+      <div class="orbit"></div>
+      <div class="art-card"><small>FEATURED PROJECT</small><strong>Backrooms: procedural world</strong><small>Seeds · Pathfinding · Atmosphere</small><div class="chips"><span class="chip">Horror</span><span class="chip">TypeScript</span><span class="chip">3D</span></div></div>
+      <div class="art-card"><small>CREATOR TOOLKIT</small><strong>Build smarter, not harder.</strong><small>Guides, snippets and practical experiments.</small></div>
+    </div>
+  </div>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head"><div><h2>Explore projects</h2><p class="sub">A showcase for games, experiments and community creations. Replace these examples with real project links.</p></div></div>
+      <div class="searchrow"><input id="projectSearch" type="search" placeholder="Search projects or tags…" aria-label="Search projects"><select id="projectType" aria-label="Filter projects"><option value="all">All types</option><option value="game">Games</option><option value="tool">Tools</option><option value="experiment">Experiments</option></select></div>
+      <div class="grid" id="projectGrid">
+        <article class="card project" data-type="game" data-search="backrooms horror procedural seed pathfinding"><div class="iconbox">▧</div><h3>Backrooms Explorer</h3><p>A liminal horror project exploring procedural generation, seeded layouts and entity pathfinding.</p><div class="meta"><span class="chip">Game</span><span class="chip">Horror</span><span class="chip">TypeScript</span></div><a class="tool-link" href="https://edu.delightex.com/" target="_blank" rel="noopener">Add project link ↗</a></article>
+        <article class="card project" data-type="game" data-search="hello neighbor stealth ai horror"><div class="iconbox">⌂</div><h3>Neighbourhood Sneak</h3><p>A stealth-game prototype with an animated character, detection ideas and interactive doors.</p><div class="meta"><span class="chip">Game</span><span class="chip">AI</span><span class="chip">Prototype</span></div><a class="tool-link" href="https://edu.delightex.com/" target="_blank" rel="noopener">Add project link ↗</a></article>
+        <article class="card project" data-type="experiment" data-search="cart ride builder tracks nodes physics"><div class="iconbox">↗</div><h3>Cart Ride Builder</h3><p>An experiment in node-based tracks, cart movement and player-built courses.</p><div class="meta"><span class="chip">Experiment</span><span class="chip">Building</span></div><a class="tool-link" href="https://edu.delightex.com/" target="_blank" rel="noopener">Add project link ↗</a></article>
+      </div>
+      <p class="empty" id="noProjects">No projects match that search. Try another term.</p>
+    </div>
+  </section>
+
+  <section id="tutorials">
+    <div class="wrap">
+      <div class="section-head"><div><h2>Learn something new</h2><p class="sub">Short, practical guides for people building in Delightex EDU.</p></div></div>
+      <div class="grid">
+        <article class="card"><div class="iconbox">⌘</div><h3>TypeScript starter guide</h3><p>Understand events, scene objects, variables and debugging in small steps.</p><a class="tool-link" href="https://docs.edu.delightex.com/typescript/api/public/" target="_blank" rel="noopener">Official public API docs ↗</a></article>
+        <article class="card"><div class="iconbox">◈</div><h3>Custom movement & effects</h3><p>Collect movement ideas, camera tricks and visual effects in one guide.</p><a class="tool-link" href="https://forum.edu.delightex.com/t/fully-custom-movement-effects-for-the-player/41600" target="_blank" rel="noopener">View community tutorial ↗</a></article>
+        <article class="card"><div class="iconbox">▦</div><h3>Save-data design</h3><p>Learn the basics of serialising a build, handling versions and restoring saved data.</p><a class="tool-link" href="#community">Add tutorial details ↗</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="wrap">
+      <div class="section-head"><div><h2>Creator tools</h2><p class="sub">A home for small utilities that make building easier.</p></div></div>
+      <div class="grid">
+        <article class="card"><div class="iconbox">#</div><h3>Colour converter</h3><p>Convert RGB values into a CSS hex colour.</p><div class="searchrow"><input id="rgb" placeholder="Example: 149,144,148" aria-label="RGB values"><button class="btn primary" id="convert">Convert</button></div><p id="colourResult" aria-live="polite">Enter three RGB values from 0 to 255.</p><div id="swatch" style="height:20px;border-radius:7px;margin-top:10px;border:1px solid #ffffff22"></div></article>
+        <article class="card"><div class="iconbox">⌕</div><h3>API reference shortcut</h3><p>Jump directly to the public Delightex EDU TypeScript API documentation.</p><a class="btn" style="margin-top:15px" href="https://docs.edu.delightex.com/typescript/api/public/" target="_blank" rel="noopener">Open API docs ↗</a></article>
+        <article class="card"><div class="iconbox">▤</div><h3>Snippet library</h3><p>A planned collection of reusable, explained code examples. Always check snippets against the current public API.</p><a class="tool-link" href="#community">Suggest a snippet ↗</a></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="community">
+    <div class="wrap">
+      <div class="callout">
+        <div><h2>Made by creators, for creators.</h2><p class="sub">Share a project idea, suggest a tutorial or help improve the next version of this hub.</p></div>
+        <a class="btn primary" href="https://forum.edu.delightex.com/" target="_blank" rel="noopener">Visit Delightex forum ↗</a>
+      </div>
+      <p class="notice" style="margin-top:18px">Community submissions are not connected yet. Before opening submissions, decide how to review links, credit creators, and prevent spam. Never publish private information or share account passwords.</p>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap foot"><span>© <span id="year"></span> DelightHub · An independent community project.</span><span>Not an official Delightex EDU website and not affiliated with Delightex.</span></div></footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  const search = document.getElementById('projectSearch');
+  const type = document.getElementById('projectType');
+  const cards = [...document.querySelectorAll('.project')];
+  function filterProjects() {
+    const q = search.value.toLowerCase().trim();
+    let visible = 0;
+    cards.forEach(card => {
+      const matchesText = (card.dataset.search + ' ' + card.textContent).toLowerCase().includes(q);
+      const matchesType = type.value === 'all' || card.dataset.type === type.value;
+      card.style.display = matchesText && matchesType ? '' : 'none';
+      if (matchesText && matchesType) visible++;
+    });
+    document.getElementById('noProjects').style.display = visible ? 'none' : 'block';
+  }
+  search.addEventListener('input', filterProjects);
+  type.addEventListener('change', filterProjects);
+  document.getElementById('convert').addEventListener('click', () => {
+    const values = document.getElementById('rgb').value.split(',').map(v => Number(v.trim()));
+    const result = document.getElementById('colourResult');
+    const swatch = document.getElementById('swatch');
+    if (values.length !== 3 || values.some(v => !Number.isInteger(v) || v < 0 || v > 255)) {
+      result.textContent = 'Please enter three whole numbers from 0 to 255, separated by commas.';
+      swatch.style.background = 'transparent';
+      return;
+    }
+    const hex = '#' + values.map(v => v.toString(16).padStart(2, '0')).join('');
+    result.textContent = 'Hex colour: ' + hex.toUpperCase();
+    swatch.style.background = hex;
+  });
+</script>
+</body>
+</html>
